@@ -38,7 +38,13 @@ export default function ReportDetailPage() {
   };
 
   const reanalyzeHref = report
-    ? `/analyze?name=${encodeURIComponent(report.compound.name ?? "")}&smiles=${encodeURIComponent(report.compound.smiles ?? "")}`
+    ? {
+        pathname: "/analyze",
+        query: {
+          name: report.compound.name ?? "",
+          smiles: report.compound.smiles ?? "",
+        },
+      }
     : "/analyze";
 
   return (

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Topbar } from "@/components/topbar";
 import { Button } from "@/components/ui/button";
@@ -18,7 +18,17 @@ const EXAMPLES: { label: string; smiles?: string; name?: string }[] = [
   { label: "Aflatoxin B1", name: "aflatoxin B1" },
 ];
 
+// Outer component: wrap the inner client component in <Suspense> so Next can
+// statically render the shell. `useSearchParams` requires this in Next 15+.
 export default function AnalyzePage() {
+  return (
+    <Suspense fallback={<div className="p-6"><Skeleton className="h-32" /></div>}>
+      <AnalyzePageInner />
+    </Suspense>
+  );
+}
+
+function AnalyzePageInner() {
   const params = useSearchParams();
   const [name, setName] = useState("");
   const [smiles, setSmiles] = useState("");
