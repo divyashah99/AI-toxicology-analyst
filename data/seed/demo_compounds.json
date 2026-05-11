@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Caffeine",
+    "smiles": "CN1C=NC2=C1C(=O)N(C(=O)N2C)C",
+    "expected_band": "low",
+    "notes": "Common stimulant. No high-severity structural alerts."
+  },
+  {
+    "name": "Aspirin",
+    "smiles": "CC(=O)OC1=CC=CC=C1C(=O)O",
+    "expected_band": "low",
+    "notes": "Acetylsalicylic acid. Benchmark for friendly chemistry."
+  },
+  {
+    "name": "Bisphenol A",
+    "smiles": "CC(C)(c1ccc(O)cc1)c1ccc(O)cc1",
+    "expected_band": "moderate",
+    "notes": "Endocrine disruptor; multiple physchem flags."
+  },
+  {
+    "name": "Aflatoxin B1",
+    "smiles": "O=C1OC[C@@H]2[C@@H]1Oc1c2c(=O)c2c(c1OC)C=CO2",
+    "expected_band": "high",
+    "notes": "Potent hepatocarcinogen; flags epoxide-like and aromatic systems."
+  },
+  {
+    "name": "Acrolein",
+    "smiles": "C=CC=O",
+    "expected_band": "high",
+    "notes": "Aldehyde + Michael acceptor; strong electrophile."
+  }
+]

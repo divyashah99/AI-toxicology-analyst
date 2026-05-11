@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: ai-toxicology-analyst-backend
+    runtime: docker
+    rootDir: backend
+    plan: starter
+    healthCheckPath: /healthz
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4.1-mini
+      - key: CHROMA_PERSIST_DIR
+        value: /data/chroma
+      - key: UPLOAD_DIR
+        value: /data/uploads
+      - key: BACKEND_CORS_ORIGINS
+        sync: false

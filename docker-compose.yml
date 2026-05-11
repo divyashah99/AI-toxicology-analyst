@@ -1,0 +1,26 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: tox-backend
+    env_file: .env
+    environment:
+      CHROMA_PERSIST_DIR: /data/chroma
+      UPLOAD_DIR: /data/uploads
+    volumes:
+      - tox-data:/data
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/healthz')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # Frontend is run separately (pnpm dev) or deployed to Vercel.
+  # Compose file keeps backend self-contained for free-tier hosts.
+
+volumes:
+  tox-data:
